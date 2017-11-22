@@ -1,3 +1,7 @@
+//UWindsor POTW3 - UNKoolKatz
+//Created by Marcus Toldo on Monday, November 19, 2017
+//Last edited on Wednesday, November 21, 2017
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,7 +14,6 @@ public class Main {
         int numberOfInputs = sc.nextInt();
 
         int[][] friendRelations = new int[numberOfInputs][2];
-
 
         for (int i = 0; i < numberOfInputs; i++) {
 
