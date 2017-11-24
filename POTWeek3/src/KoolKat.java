@@ -8,7 +8,7 @@ class KoolKat {
 
     private ArrayList<Integer> friends = new ArrayList<>();
     private ArrayList<Integer> likedPosts = new ArrayList<>();
-    private ArrayList<Integer> dislikedPosts = new ArrayList<>();
+    //private ArrayList<Integer> dislikedPosts = new ArrayList<>();
     int ID;
 
     KoolKat(int ID) {
@@ -23,10 +23,9 @@ class KoolKat {
 
         if (l == 1) {
             likedPosts.add(p);
-        } else {
+        } /*else {
             dislikedPosts.add(p);
-        }
-
+        }*/
     }
 
     void DetermineNotifications(int t, ArrayList<KoolKat> KoolKatz) {
@@ -41,7 +40,6 @@ class KoolKat {
                 if (temp.ID == i) {
                     friendsLikedPosts.addAll(temp.likedPosts);
                 }
-
             }
         }
 
@@ -67,8 +65,8 @@ class KoolKat {
         }
 
         for (int i : worthyPosts) {
-            System.out.print(i + " ");
+            System.out.print(i + "\n");
         }
-
     }
 }
+

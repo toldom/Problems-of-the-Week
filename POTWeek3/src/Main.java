@@ -12,38 +12,22 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         int numberOfInputs = sc.nextInt();
-
-        int[][] friendRelations = new int[numberOfInputs][2];
-
-        for (int i = 0; i < numberOfInputs; i++) {
-
-            int person = sc.nextInt();
-            int friend = sc.nextInt();
-
-            friendRelations[i][0] = person;
-            friendRelations[i][1] = friend;
-        }
-
-        //Creating out ArrayList of people specified in the input
+        int first, second;
         ArrayList<KoolKat> KoolKatz = new ArrayList<>();
-        ArrayList<Integer> uniquePeople = new ArrayList<>();
-        for (int i = 0; i < numberOfInputs; i++) {
-            if (!uniquePeople.contains(friendRelations[i][0])) {
-                KoolKatz.add(new KoolKat(friendRelations[i][0]));
-                uniquePeople.add(friendRelations[i][0]);
-            }
-            if (!uniquePeople.contains(friendRelations[i][1])) {
-                KoolKatz.add(new KoolKat(friendRelations[i][1]));
-                uniquePeople.add(friendRelations[i][1]);
-            }
 
-        }
-
-        //Adding all these peoples friend relations
+        /* Populates group members and adds
+        each persons corresponding friendships*/
         for (int i = 0; i < numberOfInputs; i++) {
-            for (KoolKat temp : KoolKatz) {
-                if (temp.ID == friendRelations[i][0]) {
-                    temp.AddFriend(friendRelations[i][1]);
+
+            first = sc.nextInt();
+            second = sc.nextInt();
+
+            //Do twice
+            for (int j = 0; j < 2; j++) {
+                if (j == 0) {
+                    CheckAdd(first, second, KoolKatz);
+                } else {
+                    CheckAdd(second, first, KoolKatz);
                 }
             }
         }
@@ -74,5 +58,36 @@ public class Main {
                 temp.DetermineNotifications(threshold, KoolKatz);
             }
         }
+    }
+
+    /*
+    Input: Recieves two ints (the person and their friend), as well as the AL of group members as input
+    Output: void fn
+    Purpose: Checks if the person is already a member of the group or not, if not will add them and set up
+    friendships, if they are will just set up the friendship
+     */
+    private static void CheckAdd(int person, int friend, ArrayList<KoolKat> KoolKatz) {
+
+        boolean isIn = false;
+
+        for (KoolKat temp : KoolKatz) {
+            if (temp.ID == person) {
+                isIn = true;
+            }
+        }
+
+        if (isIn) {
+            for (KoolKat temp : KoolKatz) {
+                if (temp.ID == person) {
+                    temp.AddFriend(friend);
+                    break;
+                }
+            }
+        } else {
+            KoolKat temp = new KoolKat(person);
+            temp.AddFriend(friend);
+            KoolKatz.add(temp);
+        }
+
     }
 }
